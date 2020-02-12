@@ -1,0 +1,1 @@
+CREATE SCHEMA `spring_test` DEFAULT CHARACTER SET utf8 ;

@@ -26,7 +26,7 @@ public class AppConfig {
     }
 
     @Bean
-    LocalSessionFactoryBean getSessionFactory() {
+    public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(getDataSource());
         Properties properties = new Properties();

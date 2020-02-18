@@ -21,31 +21,24 @@ public class UserController {
     @RequestMapping(value = "/inject", method = RequestMethod.GET)
     public String addUsers() {
 
-        User user1 = new User("joe@gmail.com", "Joe");
-        User user2 = new User("bob@gmail.com", "Bob");
-        User user3 = new User("john@gmail.com", "John");
-        User user4 = new User("lenny@gmail.com", "Lenny");
-
-        userService.add(user1);
-        userService.add(user2);
-        userService.add(user3);
-        userService.add(user4);
+        userService.add(new User("joe@gmail.com", "Joe"));
+        userService.add(new User("bob@gmail.com", "Bob"));
+        userService.add(new User("john@gmail.com", "John"));
+        userService.add(new User("lenny@gmail.com", "Lenny"));
         return "users injected";
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public UserResponseDto getUser(@PathVariable Long userId) {
         User user = userService.get(userId);
-        UserResponseDto userDto = new UserResponseDto(user.getEmail(), user.getName());
-        return userDto;
+        return new UserResponseDto(user.getEmail(), user.getName());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<UserResponseDto> getAll(Long id) {
         return userService.listUsers().stream()
                 .map(u -> {
-                    UserResponseDto userDto = new UserResponseDto(u.getEmail(), u.getName());
-                    return userDto;
+                    return new UserResponseDto(u.getEmail(), u.getName());
                 })
                 .collect(Collectors.toList());
     }

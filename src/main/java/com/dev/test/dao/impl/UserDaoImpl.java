@@ -35,8 +35,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            User user = session.get(User.class, id);
-            return user;
+            return session.get(User.class, id);
         } catch (Exception e) {
             throw new RuntimeException("Can't find user: ", e);
         }

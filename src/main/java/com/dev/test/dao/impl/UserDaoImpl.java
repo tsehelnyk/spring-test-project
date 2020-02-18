@@ -33,6 +33,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(User.class, id);
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find user: ", e);
+        }
+    }
+
+    @Override
     public List<User> getAll() {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
